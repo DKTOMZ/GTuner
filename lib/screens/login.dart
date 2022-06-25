@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:login_signup/screens/field_widgets.dart';
-import 'package:login_signup/const%20&%20control/auth/auth_control.dart';
+import 'package:login_signup/control/auth/auth_control.dart';
 import 'package:login_signup/screens/reset_password.dart';
 import 'package:login_signup/screens/signup.dart';
+
+import '../control/screen_functions/unfocus.dart';
 
 class Login extends GetWidget<AuthController> {
   Login({Key? key}) : super(key: key);
@@ -152,12 +154,4 @@ Row signUp(controller) {
       ),
     ],
   );
-}
-
-void unfocusKeyboard(BuildContext context) {
-  FocusScopeNode currentFocus = FocusScope.of(context);
-
-  if (!currentFocus.hasPrimaryFocus) {
-    currentFocus.unfocus();
-  }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:login_signup/const%20&%20control/auth/auth_control.dart';
+import 'package:login_signup/control/auth/auth_control.dart';
+
+import '../control/tuner/tuner.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,17 +12,54 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+final _tuner = Get.find<TunerController>();
+
 class _HomeState extends State<Home> {
-  final controller = Get.find<AuthController>();
-  int _selectedIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    _tuner.recordAudio();
+  }
+
+  final _authcontrol = Get.find<AuthController>();
+
+  // ignore: prefer_final_fields
+  var _selectedIndex = 0.obs;
+
   final List<Widget> _pages = <Widget>[
     Icon(
       Icons.music_note,
       size: 150,
       color: Colors.amber.shade700,
     ),
+    Column(
+      children: [
+        Obx(() => Text(
+              _tuner.note.value,
+              style: TextStyle(
+                  color: Colors.amber.shade700,
+                  fontSize: 90,
+                  fontWeight: FontWeight.bold),
+            )),
+        Obx(() => Text(
+              _tuner.status.value == 'undefined'
+                  ? 'Play something'
+                  : _tuner.status.value,
+              style: TextStyle(
+                  fontSize: 30,
+                  color: _tuner.status.value == 'tuned' ||
+                          _tuner.status.value == 'Play something'
+                      ? Colors.green
+                      : Colors.red),
+            )),
+        Obx(() => Text(
+              _tuner.diff.value.toString(),
+              style: const TextStyle(fontSize: 20),
+            ))
+      ],
+    ),
     Icon(
-      FontAwesomeIcons.guitar,
+      Icons.tune,
       size: 150,
       color: Colors.amber.shade700,
     ),
@@ -49,37 +88,42 @@ class _HomeState extends State<Home> {
             },
             onSelected: (value) {
               if (value == 0) {
-                controller.signOut();
+                _authcontrol.signOut();
               }
             },
           )
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: _pages.elementAt(_selectedIndex),
-          )
-        ],
+      body: Obx(
+        () => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: _pages.elementAt(_selectedIndex.value),
+            )
+          ],
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.amber.shade700,
-        unselectedItemColor: Colors.white,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.music_note, size: 40), label: 'Songs'),
-          BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.guitar, size: 40), label: 'Tune'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings, size: 40), label: 'Settings'),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
+      bottomNavigationBar: Obx(
+        () => BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.amber.shade700,
+          unselectedItemColor: Colors.white,
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.music_note, size: 40), label: 'Songs'),
+            BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.guitar, size: 40), label: 'Tune'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.tune, size: 40), label: 'Tools'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings, size: 40), label: 'Settings'),
+          ],
+          currentIndex: _selectedIndex.value,
+          onTap: (index) {
+            _selectedIndex.value = index;
+          },
+        ),
       ),
     );
   }

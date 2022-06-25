@@ -30,20 +30,21 @@ dependencies:
   flutter:
     sdk: flutter
   hexcolor: ^2.0.7
-  font_awesome_flutter:
-  firebase_auth_desktop: ^1.0.0
+  font_awesome_flutter: ^10.1.0
   firebase_core: ^1.16.0
-  firebase_core_desktop: ^1.0.0
   firebase_auth: ^3.3.17 
   get: ^4.6.1
   google_sign_in: ^5.3.0
-  google_sign_in_dartio: ^0.2.1
-
+  permission_handler: ^10.0.0
+  pitch_detector_dart: ^0.0.2
+  pitchupdart: ^0.0.2
+  flutter_audio_capture: ^1.1.0
+  change_app_package_name: ^1.1.0
+  
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  google_sign_in_web: ^0.10.1
 
 dev_dependencies:
   flutter_test:

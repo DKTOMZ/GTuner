@@ -1,11 +1,8 @@
-import 'dart:io';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_sign_in_dartio/google_sign_in_dartio.dart';
-import 'package:login_signup/const%20&%20control/auth/auth_bind.dart';
-import 'package:login_signup/const%20&%20control/auth/auth_control.dart';
+import 'package:login_signup/control/auth/auth_bind.dart';
+import 'package:login_signup/control/auth/auth_control.dart';
 import 'package:get/get.dart';
 import 'package:login_signup/screens/home.dart';
 import 'package:login_signup/screens/login.dart';
@@ -13,11 +10,6 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (Platform.isLinux) {
-    await GoogleSignInDart.register(
-        clientId:
-            '858261065485-ls966kfh93pi7hiucdqhcojr9con5knc.apps.googleusercontent.com');
-  }
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(MyApp()));
 }

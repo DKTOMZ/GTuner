@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.login_signup">
+    package="com.example.GTuner">
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
    <application
         android:label="login_signup"
         android:name="${applicationName}"

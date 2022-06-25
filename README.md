@@ -1,19 +1,18 @@
-# login_signup
+# GTuner
 
-A flutter project for implementing login and signup functionality using:
+A guitar tuner flutter app that make use of:
 - GetX 
 - Firebase backend
-- Google Sign In
 
-Platforms supported include:
+Current Platforms include:
 - Android
 - iOS (not tested)
-- Linux
-- Windows (not tested)
+
+Can support desktop environments
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 

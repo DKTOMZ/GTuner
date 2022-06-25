@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login_signup/screens/login.dart';
 
-import '../const & control/auth/auth_control.dart';
+import '../control/auth/auth_control.dart';
+import '../control/screen_functions/unfocus.dart';
 import 'field_widgets.dart';
 
 class ResetPassword extends GetWidget<AuthController> {

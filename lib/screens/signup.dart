@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:login_signup/screens/field_widgets.dart';
-import 'package:login_signup/const%20&%20control/auth/auth_control.dart';
-import 'package:login_signup/screens/login.dart';
+import 'package:login_signup/control/auth/auth_control.dart';
+import '../control/screen_functions/unfocus.dart';
 
 class SignUp extends GetWidget<AuthController> {
   SignUp({Key? key}) : super(key: key);

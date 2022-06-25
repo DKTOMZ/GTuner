@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:login_signup/const%20&%20control/auth/auth_control.dart';
+import 'package:login_signup/control/auth/auth_control.dart';
 
 final Color homeColor = HexColor('#2d585b');
 
@@ -28,7 +28,7 @@ class CommonTxtField extends StatefulWidget {
 }
 
 class _CommonTxtFieldState extends State<CommonTxtField> {
-  final authcontroller = Get.find<AuthController>();
+  final _authcontrol = Get.find<AuthController>();
   bool _isObscure = true;
 
   @override
@@ -57,7 +57,7 @@ class _CommonTxtFieldState extends State<CommonTxtField> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 8.0, 0),
                 child: Icon(
-                    authcontroller.isValid ? Icons.check_circle_sharp : null,
+                    _authcontrol.isValid ? Icons.check_circle_sharp : null,
                     color: Colors.amber.shade600),
               ),
               widget.isPass

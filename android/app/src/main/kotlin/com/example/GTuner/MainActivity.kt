@@ -1,4 +1,4 @@
-package com.example.login_signup
+package com.example.GTuner
 
 import io.flutter.embedding.android.FlutterActivity
 
