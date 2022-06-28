@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:login_signup/control/auth/info_widgets.dart';
-import 'package:login_signup/screens/home.dart';
-import 'package:login_signup/screens/login.dart';
+import 'package:GTuner/control/auth/info_widgets.dart';
+import 'package:GTuner/screens/home/home.dart';
+import 'package:GTuner/screens/login.dart';
 
 class AuthController extends GetxController {
   final GoogleSignIn _googleSignIn = GoogleSignIn(

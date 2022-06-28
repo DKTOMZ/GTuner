@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:858261065485:android:7d744662bdded7a0f7ea44",
+        "mobilesdk_app_id": "1:858261065485:android:c78f9ac178384e4ff7ea44",
         "android_client_info": {
-          "package_name": "com.example.login_signup"
+          "package_name": "com.example.GTuner"
         }
       },
       "oauth_client": [
         {
-          "client_id": "858261065485-ujq1d892eit5ehgic7brasvcr6g7t9un.apps.googleusercontent.com",
+          "client_id": "858261065485-70pakcnl6sp7350e8hsc4ufj1e03eqfe.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.login_signup",
+            "package_name": "com.example.GTuner",
             "certificate_hash": "2adf34326afc65f8d26683e92f5565f60c706be9"
           }
         },
@@ -42,7 +42,7 @@
               "client_id": "858261065485-i6sj26kl51u50plv8lu56qevs2fcgl1q.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.loginSignup"
+                "bundle_id": "com.example.GTuner"
               }
             }
           ]

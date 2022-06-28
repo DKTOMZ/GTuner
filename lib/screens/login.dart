@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:login_signup/screens/field_widgets.dart';
-import 'package:login_signup/control/auth/auth_control.dart';
-import 'package:login_signup/screens/reset_password.dart';
-import 'package:login_signup/screens/signup.dart';
+import 'package:GTuner/screens/field_widgets.dart';
+import 'package:GTuner/control/auth/auth_control.dart';
+import 'package:GTuner/screens/reset_password.dart';
+import 'package:GTuner/screens/signup.dart';
 
 import '../control/screen_functions/unfocus.dart';
 

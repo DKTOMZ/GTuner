@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:login_signup/control/auth/auth_control.dart';
-
-import '../control/tuner/tuner.dart';
+import 'package:GTuner/control/auth/auth_control.dart';
+import 'package:GTuner/screens/home/home_settings.dart';
+import 'package:GTuner/screens/home/home_songs.dart';
+import 'package:GTuner/screens/home/home_tools.dart';
+import 'package:GTuner/screens/home/home_tune.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,13 +14,11 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-final _tuner = Get.find<TunerController>();
-
 class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    _tuner.recordAudio();
+    tuner.recordAudio();
   }
 
   final _authcontrol = Get.find<AuthController>();
@@ -26,54 +26,13 @@ class _HomeState extends State<Home> {
   // ignore: prefer_final_fields
   var _selectedIndex = 0.obs;
 
-  final List<Widget> _pages = <Widget>[
-    Icon(
-      Icons.music_note,
-      size: 150,
-      color: Colors.amber.shade700,
-    ),
-    Column(
-      children: [
-        Obx(() => Text(
-              _tuner.note.value,
-              style: TextStyle(
-                  color: Colors.amber.shade700,
-                  fontSize: 90,
-                  fontWeight: FontWeight.bold),
-            )),
-        Obx(() => Text(
-              _tuner.status.value == 'undefined'
-                  ? 'Play something'
-                  : _tuner.status.value,
-              style: TextStyle(
-                  fontSize: 30,
-                  color: _tuner.status.value == 'tuned' ||
-                          _tuner.status.value == 'Play something'
-                      ? Colors.green
-                      : Colors.red),
-            )),
-        Obx(() => Text(
-              _tuner.diff.value.toString(),
-              style: const TextStyle(fontSize: 20),
-            ))
-      ],
-    ),
-    Icon(
-      Icons.tune,
-      size: 150,
-      color: Colors.amber.shade700,
-    ),
-    Icon(
-      Icons.settings,
-      size: 150,
-      color: Colors.amber.shade700,
-    ),
-  ];
+  final List<Widget> _pages = <Widget>[songs(), tune(), tools(), settings()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('GTuner'),
         automaticallyImplyLeading: false,
         actions: [
           PopupMenuButton(
@@ -96,11 +55,8 @@ class _HomeState extends State<Home> {
       ),
       body: Obx(
         () => Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(
-              child: _pages.elementAt(_selectedIndex.value),
-            )
+            _pages.elementAt(_selectedIndex.value),
           ],
         ),
       ),

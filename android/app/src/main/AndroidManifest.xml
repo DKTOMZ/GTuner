@@ -2,7 +2,7 @@
     package="com.example.GTuner">
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
    <application
-        android:label="login_signup"
+        android:label="GTuner"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

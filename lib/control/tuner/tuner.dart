@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_capture/flutter_audio_capture.dart';
 import 'package:get/get.dart';
-import 'package:login_signup/control/auth/info_widgets.dart';
+import 'package:GTuner/control/auth/info_widgets.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
@@ -52,7 +52,5 @@ class TunerController extends GetxController {
     }
   }
 
-  void onError(e) {
-    print(e);
-  }
+  void onError(e) {}
 }

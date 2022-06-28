@@ -1,18 +1,23 @@
+import 'dart:convert';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:login_signup/control/auth/auth_bind.dart';
-import 'package:login_signup/control/auth/auth_control.dart';
+import 'package:GTuner/control/auth/auth_bind.dart';
+import 'package:GTuner/control/auth/auth_control.dart';
 import 'package:get/get.dart';
-import 'package:login_signup/screens/home.dart';
-import 'package:login_signup/screens/login.dart';
+import 'package:GTuner/screens/home/home.dart';
+import 'package:GTuner/screens/login.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await getImages().then((value) => chords.value = value);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(MyApp()));
 }
+
+var chords = [].obs;
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
@@ -51,4 +56,13 @@ class MyApp extends StatelessWidget {
       },
     );
   }
+}
+
+Future<List> getImages() async {
+  var files = await rootBundle.loadString('AssetManifest.json');
+  Map<String, dynamic> images = json.decode(files);
+  List chords = images.keys
+      .where((String key) => key.contains('images/chords/'))
+      .toList();
+  return chords;
 }

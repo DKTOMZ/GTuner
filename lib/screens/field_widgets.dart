@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:login_signup/control/auth/auth_control.dart';
+import 'package:GTuner/control/auth/auth_control.dart';
 
 final Color homeColor = HexColor('#2d585b');
 
