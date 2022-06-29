@@ -20,7 +20,7 @@ class _ChordLibraryState extends State<ChordLibrary> {
   void initState() {
     super.initState();
     changingChords =
-        chords.where((p0) => p0.contains('images/chords/CMaj')).toList().obs;
+        chords.where((p0) => p0.contains('images/chords/CMajor')).toList().obs;
   }
 
   @override
