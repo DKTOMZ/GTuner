@@ -1,15 +1,14 @@
+import 'package:GTuner/control/home/screen_functions/unfocus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../control/auth/auth_control.dart';
-import '../control/screen_functions/unfocus.dart';
+import '../../control/auth/auth_control.dart';
 import 'field_widgets.dart';
 
-class ResetPassword extends GetWidget<AuthController> {
-  ResetPassword({Key? key}) : super(key: key);
+final TextEditingController resetpassemailcontroller = TextEditingController();
 
-  final TextEditingController _resetpassemailcontroller =
-      TextEditingController();
+class ResetPassword extends GetWidget<AuthController> {
+  const ResetPassword({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +40,7 @@ class ResetPassword extends GetWidget<AuthController> {
                     text: 'Enter registered email address',
                     icon: Icons.person_outline,
                     isPass: false,
-                    controller: _resetpassemailcontroller,
+                    controller: resetpassemailcontroller,
                     validator: controller.emailValidator,
                     inputaction: TextInputAction.done,
                   ),
@@ -52,7 +51,7 @@ class ResetPassword extends GetWidget<AuthController> {
                       btntext: 'RESET PASSWORD',
                       onPressed: () {
                         controller.resetPassword(
-                          _resetpassemailcontroller.text,
+                          resetpassemailcontroller.text,
                         );
                       })
                 ],

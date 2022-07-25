@@ -1,19 +1,17 @@
+import 'package:GTuner/control/home/screen_functions/unfocus.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:GTuner/screens/field_widgets.dart';
+import 'package:GTuner/screens/auth/field_widgets.dart';
 import 'package:GTuner/control/auth/auth_control.dart';
-import 'package:GTuner/screens/reset_password.dart';
-import 'package:GTuner/screens/signup.dart';
+import 'package:GTuner/screens/auth/reset_password.dart';
+import 'package:GTuner/screens/auth/signup.dart';
 
-import '../control/screen_functions/unfocus.dart';
+final TextEditingController loginemailcontroller = TextEditingController();
+final TextEditingController loginpasswordcontroller = TextEditingController();
 
 class Login extends GetWidget<AuthController> {
-  Login({Key? key}) : super(key: key);
-
-  final TextEditingController _loginemailcontroller = TextEditingController();
-  final TextEditingController _loginpasswordcontroller =
-      TextEditingController();
+  const Login({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +53,7 @@ class Login extends GetWidget<AuthController> {
                         text: 'Enter email',
                         icon: Icons.person_outline,
                         isPass: false,
-                        controller: _loginemailcontroller,
+                        controller: loginemailcontroller,
                         validator: controller.emailValidator,
                         inputaction: TextInputAction.next,
                       ),
@@ -66,7 +64,7 @@ class Login extends GetWidget<AuthController> {
                         text: 'Enter password (length: 6 or more)',
                         icon: Icons.lock_outline,
                         isPass: true,
-                        controller: _loginpasswordcontroller,
+                        controller: loginpasswordcontroller,
                         validator: controller.passwordValidator,
                         inputaction: TextInputAction.done,
                       ),
@@ -78,11 +76,10 @@ class Login extends GetWidget<AuthController> {
               TextButton(
                 onPressed: () {
                   controller.isValid = false;
-                  Get.to(() => ResetPassword());
+                  Get.to(() => const ResetPassword());
                 },
                 child: Text(
                   'Forgot Password?',
-                  selectionColor: Colors.amber,
                   style: TextStyle(color: Colors.amber.shade700),
                 ),
               ),
@@ -93,8 +90,8 @@ class Login extends GetWidget<AuthController> {
                 btntext: 'LOGIN',
                 onPressed: () {
                   unfocusKeyboard(context);
-                  controller.login(_loginemailcontroller.text,
-                      _loginpasswordcontroller.text);
+                  controller.login(
+                      loginemailcontroller.text, loginpasswordcontroller.text);
                 },
               ),
               const SizedBox(
@@ -144,11 +141,10 @@ Row signUp(controller) {
       TextButton(
         onPressed: () {
           controller.isValid = false;
-          Get.to(() => SignUp());
+          Get.to(() => const SignUp());
         },
         child: Text(
           'SIGNUP',
-          selectionColor: Colors.amber,
           style: TextStyle(color: Colors.amber.shade700),
         ),
       ),

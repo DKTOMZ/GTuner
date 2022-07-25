@@ -1,10 +1,12 @@
+import 'package:GTuner/screens/auth/reset_password.dart';
+import 'package:GTuner/screens/auth/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:GTuner/control/auth/info_widgets.dart';
 import 'package:GTuner/screens/home/home.dart';
-import 'package:GTuner/screens/login.dart';
+import 'package:GTuner/screens/auth/login.dart';
 
 class AuthController extends GetxController {
   final GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -34,6 +36,18 @@ class AuthController extends GetxController {
     _user.bindStream(_auth.authStateChanges());
   }
 
+  @override
+  void onClose() {
+    _user.close();
+    loginemailcontroller.dispose();
+    loginpasswordcontroller.dispose();
+    signupemailcontroller.dispose();
+    signuppasswordcontroller.dispose();
+    resetpassemailcontroller.dispose();
+    super.onClose();
+  }
+
+  ///validator for email input
   String? emailValidator(String? email) {
     if (email!.isEmpty) {
       isValid = false;
@@ -49,6 +63,7 @@ class AuthController extends GetxController {
     return null;
   }
 
+  ///validator for password input
   String? passwordValidator(String? password) {
     if (password!.isEmpty) {
       isValid = false;
@@ -64,6 +79,7 @@ class AuthController extends GetxController {
     return null;
   }
 
+  ///creates new user
   Future<void> createUser(String email, String password) async {
     if (!signupFormKey.currentState!.validate()) return;
     LoadingWidget(info: 'Registering...').alertDialog;
@@ -97,6 +113,7 @@ class AuthController extends GetxController {
     isValid = false;
   }
 
+  ///Log's in a user
   Future<void> login(String email, String password) async {
     if (!loginFormkey.currentState!.validate()) return;
     LoadingWidget(info: 'Logging in...').alertDialog;
@@ -132,6 +149,7 @@ class AuthController extends GetxController {
     isValid = false;
   }
 
+  ///Sends a password reset link
   Future<void> resetPassword(String email) async {
     if (!resetpasswordFormKey.currentState!.validate()) return;
     LoadingWidget(info: 'Sending reset link...').alertDialog;
@@ -161,6 +179,7 @@ class AuthController extends GetxController {
     isValid = false;
   }
 
+  ///Log's out the user
   Future<void> signOut() async {
     if (_auth.currentUser!.providerData[0].providerId == 'google.com') {
       try {
@@ -176,7 +195,7 @@ class AuthController extends GetxController {
       }
     }
     try {
-      await _auth.signOut().then((value) => Get.offAll(Login()));
+      await _auth.signOut().then((value) => Get.offAll(const Login()));
     } catch (e) {
       InteractiveWidget(
           title: 'Log out error',
@@ -188,6 +207,7 @@ class AuthController extends GetxController {
     }
   }
 
+  ///Log's in the user via google sign in
   Future<void> googleSignIn() async {
     final googleUser = await _googleSignIn.signIn().catchError((e) {
       InteractiveWidget(

@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:GTuner/control/auth/auth_bind.dart';
+import 'package:GTuner/control/dependencies/dep_bind.dart';
 import 'package:GTuner/control/auth/auth_control.dart';
 import 'package:get/get.dart';
 import 'package:GTuner/screens/home/home.dart';
-import 'package:GTuner/screens/login.dart';
+import 'package:GTuner/screens/auth/login.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -45,9 +45,10 @@ class MyApp extends StatelessWidget {
               darkTheme: ThemeData.dark(),
               themeMode: ThemeMode.dark,
               debugShowCheckedModeBanner: false,
-              initialBinding: AuthBinding(),
-              home:
-                  AuthController().user != 'No User' ? const Home() : Login());
+              initialBinding: DependenciesBinding(),
+              home: AuthController().user != 'No User'
+                  ? const Home()
+                  : const Login());
         }
         return Container(
           color: Colors.black,

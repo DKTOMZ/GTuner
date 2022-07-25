@@ -1,15 +1,14 @@
+import 'package:GTuner/control/home/screen_functions/unfocus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:GTuner/screens/field_widgets.dart';
+import 'package:GTuner/screens/auth/field_widgets.dart';
 import 'package:GTuner/control/auth/auth_control.dart';
-import '../control/screen_functions/unfocus.dart';
+
+final TextEditingController signupemailcontroller = TextEditingController();
+final TextEditingController signuppasswordcontroller = TextEditingController();
 
 class SignUp extends GetWidget<AuthController> {
-  SignUp({Key? key}) : super(key: key);
-
-  final TextEditingController _signupemailcontroller = TextEditingController();
-  final TextEditingController _signuppasswordcontroller =
-      TextEditingController();
+  const SignUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +40,7 @@ class SignUp extends GetWidget<AuthController> {
                     text: 'Enter email address',
                     icon: Icons.person_outline,
                     isPass: false,
-                    controller: _signupemailcontroller,
+                    controller: signupemailcontroller,
                     validator: controller.emailValidator,
                     inputaction: TextInputAction.next,
                   ),
@@ -52,7 +51,7 @@ class SignUp extends GetWidget<AuthController> {
                     text: 'Enter Password',
                     icon: Icons.lock_outline,
                     isPass: true,
-                    controller: _signuppasswordcontroller,
+                    controller: signuppasswordcontroller,
                     validator: controller.passwordValidator,
                     inputaction: TextInputAction.done,
                   ),
@@ -63,8 +62,8 @@ class SignUp extends GetWidget<AuthController> {
                       btntext: 'SIGNUP',
                       onPressed: () {
                         unfocusKeyboard(context);
-                        controller.createUser(_signupemailcontroller.text,
-                            _signuppasswordcontroller.text);
+                        controller.createUser(signupemailcontroller.text,
+                            signuppasswordcontroller.text);
                       })
                 ],
               ),

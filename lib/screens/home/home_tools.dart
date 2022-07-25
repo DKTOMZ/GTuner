@@ -1,3 +1,4 @@
+import 'package:GTuner/screens/tools/tools_metronome.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,7 +32,9 @@ Widget tools() => Padding(
                     image: const AssetImage('images/tempo.jpg'),
                     fit: BoxFit.cover,
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(const MetroUI());
+                      },
                     ),
                     colorFilter: ColorFilter.mode(
                         Colors.black.withOpacity(0.3), BlendMode.dstATop),

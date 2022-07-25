@@ -1,28 +1,57 @@
+import 'package:GTuner/main.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:GTuner/screens/tools/tools_chords.dart';
 
-import '../main.dart';
-
 Widget showChords(List changingChords) {
+  Rx<int> currentIndex = 0.obs;
   return Obx(
-    () => CarouselSlider(
-      items: changingChords.map((i) {
-        return Builder(
-          builder: (BuildContext context) {
-            return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                child: SvgPicture.asset(
-                  i,
-                  color: Colors.amber.shade700,
-                ));
-          },
-        );
-      }).toList(),
-      options: CarouselOptions(height: 300, enableInfiniteScroll: false),
-    ),
+    () => Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      CarouselSlider(
+        items: changingChords.map((i) {
+          return Builder(
+            builder: (BuildContext context) {
+              return Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: SvgPicture.asset(
+                    i,
+                    color: Colors.amber.shade700,
+                  ));
+            },
+          );
+        }).toList(),
+        options: CarouselOptions(
+            initialPage: currentIndex.value,
+            onPageChanged: (index, reason) {
+              currentIndex.value = index;
+            },
+            height: 300,
+            enableInfiniteScroll: false,
+            enlargeCenterPage: true,
+            viewportFraction: 0.5),
+      ),
+      Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List<Widget>.generate(
+              changingChords.length,
+              (i) => Obx(
+                    () => Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Container(
+                          height: 10,
+                          width: 10,
+                          margin: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                              color: i == currentIndex.value
+                                  ? Colors.amber.shade700
+                                  : Colors.grey,
+                              borderRadius: BorderRadius.circular(50))),
+                    ),
+                  ))),
+    ]),
   );
 }
 

@@ -18,13 +18,12 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    tuner.recordAudio();
+    //tuner.recordAudio();
   }
 
   final _authcontrol = Get.find<AuthController>();
 
-  // ignore: prefer_final_fields
-  var _selectedIndex = 0.obs;
+  final Rx<int> _selectedIndex = 0.obs;
 
   final List<Widget> _pages = <Widget>[songs(), tune(), tools(), settings()];
 

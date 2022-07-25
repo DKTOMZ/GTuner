@@ -1,6 +1,6 @@
+import 'package:GTuner/control/home/tools/chords/chords_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:GTuner/control/chords_list.dart';
 import 'package:GTuner/main.dart';
 
 class ChordLibrary extends StatefulWidget {

@@ -18,6 +18,13 @@ class TunerController extends GetxController {
   var frequency = 0.0.obs;
   var diff = 0.0.obs;
 
+  @override
+  void onClose() async {
+    await _audioCapture.stop();
+    super.onClose();
+  }
+
+  ///Start recording audio
   Future<void> recordAudio() async {
     if (await Permission.microphone.request().isGranted ||
         await Permission.microphone.request().isLimited) {
@@ -34,6 +41,7 @@ class TunerController extends GetxController {
     }
   }
 
+  ///listen's for audio stream
   void listener(o) {
     var buffer = Float64List.fromList(o.cast<double>());
     final List<double> audioSample = buffer.toList();

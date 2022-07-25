@@ -1,6 +1,6 @@
+import 'package:GTuner/control/home/tuner/tuner.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:GTuner/control/tuner/tuner.dart';
 
 final tuner = Get.find<TunerController>();
 
