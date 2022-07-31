@@ -1,14 +1,19 @@
 # GTuner
 
-A guitar tuner flutter app that make use of:
-- GetX 
-- Firebase backend
+A guitar tuner app made with flutter
 
 Current Platforms include:
 - Android
-- iOS (not tested)
 
-Can support desktop environments
+Can support other platforms
+
+Implemented so far:
+- Tuning functionality
+- Chord Library
+
+Remaining:
+- Metronome (Challenging because it requires an accurate Timer. Timer function in dart is not accurate enough)
+- Songs (A catalogue of songs to be displayed in the app, with each song having its own tabs) 
 
 ## Getting Started
 
